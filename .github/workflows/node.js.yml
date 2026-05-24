@@ -60,7 +60,7 @@ jobs:
                 scan-ref: '.'
                 format: 'table'
                 ignore-unfixed: 'true'
-                vuln-types: 'os,library'
+                vuln-type: 'os,library'
                 SEVERITY: 'CRITICAL-HIGH'
           
         
