@@ -46,6 +46,7 @@ jobs:
         run: |
           gitleak detect --source ./client --exit-code 1
           gitleak detect --source ./api --exit-code 1
+          
         
         
         
