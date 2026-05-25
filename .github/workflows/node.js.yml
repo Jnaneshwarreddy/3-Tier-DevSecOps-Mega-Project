@@ -54,22 +54,12 @@ jobs:
         steps:
         - name: Checkout code
           uses: actions/checkout@v4
-        - name: Free Disk Space (Fix Exit Code 28)
-          run: |
-            sudo rm -rf /usr/share/dotnet
-            sudo rm -rf /usr/local/lib/android
-            sudo rm -rf /opt/ghc
-            sudo rm -rf "/usr/local/share/boost"
-            sudo rm -rf "$AGENT_TOOLSDIRECTORY"
         - name: Run Trivy vulnerability scanner in fs mode
           uses: aquasecurity/trivy-action@v0.36.0
           with:
-             scan-type: 'fs'
-             scan-ref: '.'
-             format: 'table'
-             ignore-unfixed: true
-             vuln-type: 'os,library'
-             severity: 'CRITICAL,HIGH'
+                scan-type: 'fs'
+                 scan-ref: '.'
+                 format: 'table'
              
           
         
