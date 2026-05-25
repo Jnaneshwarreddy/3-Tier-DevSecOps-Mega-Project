@@ -54,19 +54,19 @@ jobs:
         steps:
         - name: Checkout code
           uses: actions/checkout@v4
-        - name: Run Trivy vulnerability scanner in fs mode
-          uses: aquasecurity/trivy-action@v0.36.0
-          env:
-               HTTP_PROXY: "http://your-proxy-server.com:8080"
-               HTTPS_PROXY: "http://your-proxy-server.com:8080"
-               NO_PROXY: "localhost,127.0.0.1,github.com"
+        - name: Run Trivy vulnerability scanner
+          uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1
+        env:
+          # Injects proxy configuration to the action container so it can sync its CVE databases
+          HTTP_PROXY: "http://172.18.86.19:8080"
+          HTTPS_PROXY: "http://172.18.86.19:8080"
+          NO_PROXY: "localhost,127.0.0.1,github.com"
           with:
-                     scan-type: 'fs'
-                     scan-ref: '.'
-                     format: 'table'
-                     ignore-unfixed: true
-                     vuln-type: 'os,library'
-                     severity: 'CRITICAL,HIGH'
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'table'
+          exit-code: '1'
+          severity: 'CRITICAL,HIGH'
              
           
         
